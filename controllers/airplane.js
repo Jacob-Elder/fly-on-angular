@@ -10,6 +10,7 @@ router.route('/')
     });
   })
   .post(function(req, res) {
+    // return res.send(req.body)
     Airplane.create(req.body, function(err, airplane) {
       if (err) return res.status(500).send(err);
       return res.send(airplane);

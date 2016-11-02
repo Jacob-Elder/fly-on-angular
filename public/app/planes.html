@@ -1,0 +1,22 @@
+<h3>Add a new airplane:</h3>
+<form ng-submit="formSubmit()">
+     <label for="manufacturer">Manufacturer:</label>
+     <input name="manufacturer" type="text" ng-model="plane.manufacturer">
+     <label for="model">Model:</label>
+     <input name="model" type="text" ng-model="plane.model">
+     <label for="engines"># of Engines</label>
+     <input name="engines" type="number" ng-model="plane.engines">
+     <label for="picture">Pic URL:</label>
+     <input name="picture" type="text" ng-model="plane.picture">
+     <input type="submit">
+   </form>
+<h3>Existing Airplanes:</h3>
+  <div ng-repeat="plane in planes track by plane._id">
+     <div class="well">
+       <h3>Manufacturer: {{plane.manufacturer}}</h3>
+       <h5>Model: {{plane.model}}</h5>
+       <p>Engine Count: {{plane.engines}}</p>
+       <img src="{{plane.picture}}">
+       <button class="btn btn-danger" ng-click="delete(plane._id, $index)">Delete</button>
+     </div>
+   </div>
