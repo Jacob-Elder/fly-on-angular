@@ -30,7 +30,20 @@ app.controller('PlaneCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.planes = res.data
   }, function error(res) {
     console.log(res);
-  })
+  });
+
+  $scope.searchTerm = "";
+
+  $scope.filterPlanes = function() {
+    var searchTerm = $scope.searchTerm.toLowerCase();
+    var filterResults = [];
+    for(var i = 0; i < $scope.planes.length; i++) {
+      if($scope.planes[i].model.toLowerCase() === searchTerm || $scope.planes[i].manufacturer.toLowerCase() === searchTerm) {
+        filterResults.push($scope.planes[i]);
+      }
+    }
+    $scope.planes = filterResults;
+  }
 
   $scope.delete = function(id, idx) {
     var route = '/api/airplanes/' + id
